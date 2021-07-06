@@ -117,22 +117,12 @@ export default {
             return this.result = Math.pow(this.operand1, this.operand2);
         },
         deleteSymbol() {
-            if(this.operandRadio === 'operand1') {
-                const operandValue = String(this.operand1);
-                this.operand1 = Number(operandValue.slice(0, -1));
-            } else {
-                const operandValue = String(this.operand2);
-                this.operand2 = Number(operandValue.slice(0, -1));
-            }
+            const input = this.operandRadio === 'operand1' ? 'operand1' : 'operand2';
+            this[input] = +String(this[input]).slice(0, -1);
         },
         typeNumber(number) {
-            if(this.operandRadio === 'operand1') {
-                const operandValue = String(this.operand1);
-                this.operand1 = Number(operandValue + number);
-            } else {
-                const operandValue = String(this.operand2);
-                this.operand2 = Number(operandValue + number);
-            }
+            const input = this.operandRadio === 'operand1' ? 'operand1' : 'operand2';
+            this[input] = +(String(this[input]) + number);
         }
     }
 }
