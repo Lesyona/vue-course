@@ -20,7 +20,7 @@
 
 <script>
 import CategorySelect from './CategorySelect.vue';
-import {mapActions, mapGetters} from "vuex";
+import {mapActions, mapGetters, mapMutations} from "vuex";
 
 export default {
     name: "AddPayment",
@@ -37,8 +37,12 @@ export default {
         showCostForm() {
             this.isFormVisible = !this.isFormVisible;
         },
+        ...mapMutations([
+            'addDataToPaymentsList'
+        ]),
         ...mapActions([
-            'fetchCategory'
+            'fetchCategory',
+            'fetchData',
         ]),
         getCategory(category) {
             this.category = category;
@@ -51,15 +55,23 @@ export default {
                     category: this.category,
                     value: this.value
                 }
+
+                if(this.getCategoryFromRoute && this.getValueFromRoute) {
+                    this.addDataToPaymentsList(data);
+                    this.$router.push({
+                        name: 'dashboard'
+                    })
+                }
+
                 this.$emit('addNewPayment', data);
             }
         },
         getCurrentDate() {
             const today = new Date();
             const d = today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
-            const m = today.getMonth() < 10 ? `0${today.getMonth()}` : today.getMonth();
+            const m = today.getMonth() < 10 ? `0${today.getMonth() + 1}` : today.getMonth() + 1;
             const y = today.getFullYear();
-            return `${d}.${m}.${y}`;
+            return `${y}-${m}-${d}`;
         }
     },
     computed: {
@@ -70,22 +82,29 @@ export default {
         }),
         newPostId() {
             return this.paymentsList[`page${this.currentPage}`].length + 1;
+        },
+        getValueFromRoute() {
+            return Number(this.$route.query?.value) ?? null;
+        },
+        getCategoryFromRoute() {
+            return this.$route.params?.category ?? null;
         }
     },
     created() {
+        if(!this.paymentsList.length) {
+            this.fetchData('page1');
+        }
         if(!this.categories.length) {
             this.fetchCategory();
         }
 
-        if(window.location.pathname.includes('/add/payment/')) {
+        if(this.getCategoryFromRoute){
             this.isFormVisible = true;
-            const pathName = window.location.pathname.split('/add/payment/');
-            this.category = pathName[1];
             this.date = this.getCurrentDate();
+            this.category = this.getCategoryFromRoute;
 
-            if(window.location.search) {
-                const params = window.location.search.split('?value=');
-                this.value = params[1];
+            if(this.getValueFromRoute) {
+                this.value = this.getValueFromRoute;
             }
         }
     },

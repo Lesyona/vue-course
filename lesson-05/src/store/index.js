@@ -37,19 +37,19 @@ export default new Vuex.Store({
         setTimeout(() => {
           const items = {
             "page1": [
-              {"id": 1, "date": "20.03.2020", "category": "Food", "value": 169},
-              {"id": 2, "date": "21.03.2020", "category": "Navigation", "value": 50},
-              {"id": 3, "date": "22.03.2020", "category": "Sport", "value": 450}
+              {"id": 1, "date": "2020-03-20", "category": "Food", "value": 169},
+              {"id": 2, "date": "2020-03-21", "category": "Navigation", "value": 50},
+              {"id": 3, "date": "2020-03-22", "category": "Sport", "value": 450}
             ],
             "page2": [
-              {"id": 4, "date": "23.03.2020", "category": "Entertainment", "value": 969},
-              {"id": 5, "date": "24.03.2020", "category": "Education", "value": 1500},
-              {"id": 6, "date": "25.03.2020", "category": "Food", "value": 200}
+              {"id": 4, "date": "2019-05-23", "category": "Entertainment", "value": 969},
+              {"id": 5, "date": "2019-05-24", "category": "Education", "value": 1500},
+              {"id": 6, "date": "2019-05-25", "category": "Food", "value": 200}
             ],
             "page3": [
-              {"id": 7, "date": "23.03.2020", "category": "Entertainment", "value": 969},
-              {"id": 8, "date": "24.03.2020", "category": "Education", "value": 1500},
-              {"id": 9, "date": "25.03.2020", "category": "Food", "value": 200}
+              {"id": 7, "date": "2021-07-23", "category": "Entertainment", "value": 969},
+              {"id": 8, "date": "2021-07-24", "category": "Education", "value": 1500},
+              {"id": 9, "date": "2021-07-25", "category": "Food", "value": 200}
             ],
           };
           const pagesNumber = Object.keys(items).length;

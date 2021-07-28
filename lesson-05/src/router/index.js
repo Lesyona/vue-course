@@ -10,7 +10,7 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/add/payment/*',
+      path: '/add/payment/:category/',
       component: AddPayment,
       name: 'addpayment'
     },
