@@ -92,7 +92,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .payment-form {
     max-width: 25%;
     min-width: 250px;

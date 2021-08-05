@@ -21,8 +21,17 @@
                     <td class="payments__table__cell">{{ item.date }}</td>
                     <td class="payments__table__cell">{{ item.category }}</td>
                     <td class="payments__table__cell">{{ item.value }}</td>
-                    <td>
-                        <button class="edit-btn"></button>
+                    <td class="payments__table__cell">
+                        <div class="edit-wrapper">
+                            <button
+                                class="edit-btn"
+                                @click="showModal(item)"
+                            ></button>
+                            <ModalEditPayment
+                                v-if="modalSettings.item === item"
+                                :settings="modalSettings"
+                            />
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -32,15 +41,43 @@
 </template>
 
 <script>
+import ModalEditPayment from "./ModalEditPayment";
 export default {
     name: "PaymentsDisplay",
+    components: {
+        ModalEditPayment,
+    },
+    data() {
+      return {
+          modalShown: false,
+          modalSettings: {}
+      }
+    },
     props: {
         list: {
             type: Array,
             default: () => []
         }
     },
-    methods: {},
+    methods: {
+        editModalShow(settings) {
+            this.modalSettings = settings;
+        },
+        editModalHide() {
+            this.modalSettings = {};
+        },
+        showModal(item) {
+            this.$modal.show('editModal', { item: item });
+        }
+    },
+    mounted() {
+        this.$modal.EventBus.$on('show', this.editModalShow);
+        this.$modal.EventBus.$on('hide', this.editModalHide);
+    },
+    beforeDestroy() {
+        this.$modal.EventBus.$off('show', this.editModalShow);
+        this.$modal.EventBus.$off('hide', this.editModalHide);
+    }
 }
 </script>
 
@@ -76,6 +113,10 @@ export default {
     &__cell {
         height: 50px;
     }
+}
+
+.edit-wrapper {
+    position: relative;
 }
 
 .edit-btn {
