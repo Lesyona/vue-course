@@ -9,16 +9,16 @@
                     <input class="form-input" type="number" v-model.number="value" placeholder="Payment value">
                 </div>
 
-                <button class="form-button" @click="addCost">Add</button>
+                <button class="form-button" @click="saveEditedPayment">Save</button>
             </div>
         </template>
         <template v-else>
             <button
-                class="edit"
+                class="edit-btn edit"
                 @click="editPaymentItem()"
             >Редактировать</button>
             <button
-                class="delete"
+                class="edit-btn delete"
                 @click="deletePaymentItem()"
             >Удалить</button>
         </template>
@@ -26,31 +26,55 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import {mapActions, mapGetters, mapMutations} from "vuex";
+import CategorySelect from "./CategorySelect";
 
 export default {
     name: "ModalEditPayment",
     props: {
         settings: Object
     },
+    components: {
+        CategorySelect
+    },
     data() {
         return {
-            editFormVisible: false
+            editFormVisible: false,
+            category: this.settings.item.category,
+            value: this.settings.item.value,
         }
+    },
+    computed: {
+        ...mapGetters({
+            categories: 'getCategoryList',
+        }),
     },
     methods: {
         ...mapMutations([
             'removeDataFromPaymentsList',
             'editPaymentsListData'
         ]),
+        ...mapActions([
+            'fetchCategory'
+        ]),
+        getCategory(category) {
+            this.category = category;
+        },
         editPaymentItem() {
             this.editFormVisible = true;
-            //this.editPaymentsListData(this.settings.item);
-            //this.$modal.hide();
         },
         deletePaymentItem() {
             this.removeDataFromPaymentsList(this.settings.item);
             this.$modal.hide();
+        },
+        saveEditedPayment() {
+            this.editPaymentsListData({item: this.settings.item, category: this.category, value: this.value});
+            this.$modal.hide();
+        }
+    },
+    created() {
+        if (!this.categories.length) {
+            this.fetchCategory();
         }
     }
 }
@@ -77,7 +101,7 @@ export default {
         right: 15px;
     }
 
-    button {
+    .edit-btn {
         padding: 5px 10px;
         background: none;
         display: block;

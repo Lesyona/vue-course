@@ -24,8 +24,11 @@ export default new Vuex.Store({
       const i = state.paymentsList[`page${state.currentPage}`].indexOf(item);
       state.paymentsList[`page${state.currentPage}`].splice(i, 1);
     },
-    editPaymentsListData(state, item) {
-      console.log(state.paymentsList[item])
+    editPaymentsListData(state, {item, category, value}) {
+      //const i = state.paymentsList[`page${state.currentPage}`].indexOf(item);
+      item.category = category;
+      item.value = value;
+      //state.paymentsList[`page${state.currentPage}`].splice(i, 1, item);
     },
     setCategoryList(state, category) {
       state.categoryList = category;
