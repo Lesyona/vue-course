@@ -4,15 +4,22 @@ export default {
       return;
     }
     this.installed = true;
+    this.caller = null;
 
     Vue.prototype.$modal = {
       EventBus: new Vue(),
 
       show(name, settings) {
-        this.EventBus.$emit('show', {name, ...settings})
+        if (name !== this.caller){
+          this.caller = name;
+          this.EventBus.$emit('show', {name, ...settings})
+        } else {
+          this.hide();
+        }
       },
       hide() {
-        this.EventBus.$emit('hide')
+        this.caller = null;
+        this.EventBus.$emit('hide');
       }
     }
   }

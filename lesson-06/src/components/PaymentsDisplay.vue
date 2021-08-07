@@ -27,10 +27,12 @@
                                 class="edit-btn"
                                 @click="showModal(item)"
                             ></button>
-                            <ModalEditPayment
-                                v-if="modalSettings.item === item"
-                                :settings="modalSettings"
-                            />
+                            <transition name="fade">
+                                <ModalEditPayment
+                                    v-if="modalSettings.item === item"
+                                    :settings="modalSettings"
+                                />
+                            </transition>
                         </div>
                     </td>
                 </tr>
