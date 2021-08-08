@@ -1,21 +1,39 @@
 <template>
-    <div id="app">
-        <header>
-            <h1>My personal costs</h1>
-        </header>
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
 
-        <main>
-            <router-view />
-        </main>
-    </div>
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Latest Release</span>
+      </v-btn>
+    </v-app-bar>
+
+      <header>
+          <h1>My personal costs</h1>
+      </header>
+
+    <v-main>
+      <router-view/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
+
 export default {
-    name: 'App',
-    data: () => ({
-    }),
-}
+  name: 'App',
+
+  data: () => ({
+    //
+  }),
+};
 </script>
 
 <style lang="scss">
@@ -34,7 +52,6 @@ body {
 .fade-enter-active, .fade-leave-active {
     transition: opacity .3s;
 }
-
 .fade-enter, .fade-leave-to {
     opacity: 0;
 }

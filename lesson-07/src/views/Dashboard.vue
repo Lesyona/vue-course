@@ -2,7 +2,11 @@
     <div>
         <AddPayment @addNewPayment="addPaymentItem" />
 
-        <PaymentsDisplay :list="currentElements"/>
+        <v-row>
+            <PaymentsDisplay :list="currentElements"/>
+
+            <Diagram />
+        </v-row>
 
         <Pagination />
     </div>
@@ -12,6 +16,7 @@
 import PaymentsDisplay from "../components/PaymentsDisplay";
 import AddPayment from "../components/AddPayment";
 import Pagination from "../components/Pagination";
+import Diagram from "../components/Diagram";
 import {mapActions, mapGetters, mapMutations} from "vuex";
 
 export default {
@@ -20,6 +25,7 @@ export default {
         PaymentsDisplay,
         AddPayment,
         Pagination,
+        Diagram
     },
     methods: {
         ...mapMutations([
