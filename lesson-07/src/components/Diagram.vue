@@ -1,6 +1,7 @@
 <template>
     <div class="diagram">
         <DoughnutChart
+            v-if="loaded"
             :chart-data="chartData"
             :options="options"
         ></DoughnutChart>
@@ -18,20 +19,8 @@ export default {
     },
     data(){
         return {
-            chartData: {
-                labels: [],
-                datasets: [{
-                    label: 'My First Dataset',
-                    data: [],
-                    backgroundColor: [
-                        'red',
-                        'blue',
-                        'yellow',
-                        'green',
-                        'violet'
-                    ],
-                }]
-            },
+            loaded: false,
+            chartData: null,
             options: {
                 responsive: true,
                 legend: {
@@ -45,19 +34,41 @@ export default {
         ...mapGetters({
             chartDataState: 'getChartData',
         }),
-    },
-    created() {
-        console.log('created');
-
-        let i = 0;
-        for (let data in this.chartDataState) {
-            this.chartData.labels[i] = data;
-            this.chartData.datasets[0].data[i] = this.chartDataState[data];
-            i++;
+        chartState() {
+            console.log(this.chartDataState);
+            return this.chartDataState;
         }
-
-        //console.log(this.chartData);
     },
+    mounted() {
+        console.log('mounted');
+
+        this.chartData = {
+            labels: ['Red'],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [],
+                backgroundColor: [
+                    'red',
+                    'blue',
+                    'yellow',
+                    'green',
+                    'violet'
+                ],
+            }]
+        }
+    },
+    watch: {
+        chartState() {
+            let i = 0;
+            for (let data in this.chartDataState) {
+                this.chartData.labels[i] = data;
+                this.chartData.datasets[0].data[i] = this.chartDataState[data];
+                i++;
+            }
+
+            this.loaded = true;
+        }
+    }
 }
 </script>
 
