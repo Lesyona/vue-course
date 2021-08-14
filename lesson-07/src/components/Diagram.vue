@@ -9,6 +9,7 @@
 
 <script>
 import DoughnutChart from "../assets/DoughnutChart.js";
+import {mapGetters} from "vuex";
 
 export default {
     name: "Diagram",
@@ -18,18 +19,16 @@ export default {
     data(){
         return {
             chartData: {
-                labels: [
-                    'Red',
-                    'Blue',
-                    'Yellow'
-                ],
+                labels: [],
                 datasets: [{
                     label: 'My First Dataset',
-                    data: [300, 50, 100],
+                    data: [],
                     backgroundColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 205, 86)'
+                        'red',
+                        'blue',
+                        'yellow',
+                        'green',
+                        'violet'
                     ],
                 }]
             },
@@ -42,6 +41,23 @@ export default {
             }
         }
     },
+    computed: {
+        ...mapGetters({
+            chartDataState: 'getChartData',
+        }),
+    },
+    created() {
+        console.log('created');
+
+        let i = 0;
+        for (let data in this.chartDataState) {
+            this.chartData.labels[i] = data;
+            this.chartData.datasets[0].data[i] = this.chartDataState[data];
+            i++;
+        }
+
+        //console.log(this.chartData);
+    },
 }
 </script>
 
@@ -50,3 +66,5 @@ export default {
     max-width: 300px;
 }
 </style>
+
+
