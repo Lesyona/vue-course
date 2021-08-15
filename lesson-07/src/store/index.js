@@ -42,7 +42,7 @@ export default new Vuex.Store({
     },
     setChartData(state, data) {
       state.chartData = data;
-    }
+    },
   },
 
   actions: {

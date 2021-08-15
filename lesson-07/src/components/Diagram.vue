@@ -48,11 +48,11 @@ export default {
                 label: 'My First Dataset',
                 data: [],
                 backgroundColor: [
-                    'red',
-                    'blue',
-                    'yellow',
-                    'green',
-                    'violet'
+                    'rgb(252, 15, 102)',
+                    'rgb(15, 138, 252)',
+                    'rgb(248, 252, 15)',
+                    'rgb(43, 227, 104)',
+                    'rgb(224, 43, 227)'
                 ],
             }]
         }
