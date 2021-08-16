@@ -70,7 +70,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.diagram {
+    max-width: 300px;
+}
 </style>
 
 

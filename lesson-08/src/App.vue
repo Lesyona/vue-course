@@ -42,4 +42,9 @@ body {
 .fade-enter, .fade-leave-to {
     opacity: 0;
 }
+
+.v-text-field__details,
+.v-messages {
+    min-height: 0 !important;
+}
 </style>

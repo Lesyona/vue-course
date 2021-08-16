@@ -18,9 +18,7 @@
                     solo
                 ></v-text-field>
 
-                <div class="form-input__wrap">
-                    <CategorySelect :categories="categories" :categorySelected="category" @categorySelected = "getCategory" />
-                </div>
+                <CategorySelect :categories="categories" :categorySelected="category" @categorySelected = "getCategory" />
 
                 <v-text-field
                     v-model.number="value"

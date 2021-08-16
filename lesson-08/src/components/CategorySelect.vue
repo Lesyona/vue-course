@@ -1,14 +1,12 @@
 <template>
     <div>
-        <select v-model="selected" @change="categoryChanged">
-            <option
-                v-for="(option, index) in categories"
-                :key="index"
-                :value="option"
-            >
-                {{ option }}
-            </option>
-        </select>
+        <v-select
+            v-model="selected"
+            :items="categories"
+            label="Choose category"
+            @change="categoryChanged"
+            solo
+        ></v-select>
     </div>
 </template>
 

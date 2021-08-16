@@ -1,26 +1,54 @@
 <template>
     <div class="edit-payment">
         <template v-if="editFormVisible">
-            <div class="edit-form">
-                <div class="form-input__wrap">
-                    <CategorySelect :categories="categories" :categorySelected="category" @categorySelected = "getCategory" />
-                </div>
-                <div class="form-input__wrap">
-                    <input class="form-input" type="number" v-model.number="value" placeholder="Payment value">
-                </div>
+            <v-form>
+                <div class="edit-form">
 
-                <button class="form-button" @click="saveEditedPayment">Save</button>
-            </div>
+                    <CategorySelect :categories="categories" :categorySelected="category"
+                                    @categorySelected="getCategory"/>
+
+                    <v-text-field
+                        v-model.number="value"
+                        type="number"
+                        label="Payment value"
+                        solo
+                    ></v-text-field>
+
+                    <v-btn
+                        color="teal"
+                        dark
+                        @click="saveEditedPayment"
+                    >
+                        Save
+                    </v-btn>
+                </div>
+            </v-form>
         </template>
         <template v-else>
             <button
                 class="edit-btn edit"
                 @click="editPaymentItem()"
-            >Редактировать</button>
+            >
+                <v-icon
+                    small
+                    class="mr-1"
+                >
+                    mdi-pencil-outline
+                </v-icon>
+                Редактировать
+            </button>
             <button
                 class="edit-btn delete"
                 @click="deletePaymentItem()"
-            >Удалить</button>
+            >
+                <v-icon
+                    small
+                    class="mr-1"
+                >
+                    mdi-trash-can-outline
+                </v-icon>
+                Удалить
+            </button>
         </template>
     </div>
 </template>
@@ -110,6 +138,7 @@ export default {
         width: 100%;
         text-align: left;
         cursor: pointer;
+        white-space: nowrap;
 
         &:hover {
             background: #eee;

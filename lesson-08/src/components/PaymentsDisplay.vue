@@ -33,7 +33,7 @@
                             <button
                                 class="edit-btn"
                                 @click="showModal(item)"
-                            ><v-icon>mdi-dots-vertical</v-icon></button>
+                            ><v-icon large>mdi-dots-vertical</v-icon></button>
                             <transition name="fade">
                                 <ModalEditPayment
                                     v-if="modalSettings.item === item"
@@ -136,7 +136,7 @@ export default {
 
     .v-icon.v-icon {
         color: #000;
-        font-size: 30px;
+        //font-size: 30px;
     }
 }
 </style>
