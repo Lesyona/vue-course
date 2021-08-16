@@ -39,8 +39,6 @@ export default {
         }
     },
     mounted() {
-        console.log('mounted');
-
         this.chartData = {
             labels: ['Red'],
             datasets: [{
@@ -72,9 +70,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.diagram {
-    max-width: 300px;
-}
+
 </style>
 
 

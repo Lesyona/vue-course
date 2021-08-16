@@ -1,38 +1,25 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app>
+        <v-container>
+            <header>
+                <h1 class="text-h4 text-md-h3 mb-5">My personal costs</h1>
+            </header>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-app-bar>
-
-      <header>
-          <h1>My personal costs</h1>
-      </header>
-
-    <v-main>
-      <router-view/>
-    </v-main>
-  </v-app>
+            <v-main>
+                <router-view/>
+            </v-main>
+        </v-container>
+    </v-app>
 </template>
 
 <script>
 
 export default {
-  name: 'App',
+    name: 'App',
 
-  data: () => ({
-    //
-  }),
+    data: () => ({
+        //
+    }),
 };
 </script>
 
@@ -42,9 +29,8 @@ export default {
 }
 
 body {
-    margin: 0 50px;
+    margin: 0;
     padding: 0;
-    font-family: Verdana, Arial, sans-serif;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
 }
@@ -52,6 +38,7 @@ body {
 .fade-enter-active, .fade-leave-active {
     transition: opacity .3s;
 }
+
 .fade-enter, .fade-leave-to {
     opacity: 0;
 }

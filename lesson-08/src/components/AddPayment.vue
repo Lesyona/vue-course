@@ -1,19 +1,42 @@
 <template>
     <div>
-        <button class="form-button" @click="showCostForm">Add New Cost</button>
+        <v-btn
+            color="teal"
+            dark
+            class="mb-5"
+            @click="showCostForm"
+        >
+            Add New Cost <v-icon>mdi-plus</v-icon>
+        </v-btn>
 
         <div class="payment-form" v-if="isFormVisible">
-            <div class="form-input__wrap">
-                <input class="form-input" type="date" v-model="date" placeholder="Payment date">
-            </div>
-            <div class="form-input__wrap">
-                <CategorySelect :categories="categories" :categorySelected="category" @categorySelected = "getCategory" />
-            </div>
-            <div class="form-input__wrap">
-                <input class="form-input" type="number" v-model.number="value" placeholder="Payment value">
-            </div>
+            <v-form>
+                <v-text-field
+                    v-model="date"
+                    type="date"
+                    label="Payment date"
+                    solo
+                ></v-text-field>
 
-            <button class="form-button" @click="addCost">Add</button>
+                <div class="form-input__wrap">
+                    <CategorySelect :categories="categories" :categorySelected="category" @categorySelected = "getCategory" />
+                </div>
+
+                <v-text-field
+                    v-model.number="value"
+                    type="number"
+                    label="Payment value"
+                    solo
+                ></v-text-field>
+
+                <v-btn
+                    color="teal"
+                    dark
+                    @click="addCost"
+                >
+                    Add
+                </v-btn>
+            </v-form>
         </div>
     </div>
 </template>

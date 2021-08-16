@@ -1,5 +1,10 @@
 <template>
     <div class="navigation-wrap">
+<!--        <v-pagination-->
+<!--            v-model="page"-->
+<!--            :length="6"-->
+<!--        ></v-pagination>-->
+
         <div class="nav-btn" @click="fetchData(`page${currentPage - 1}`)">-</div>
         <div
             class="nav-btn"

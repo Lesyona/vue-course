@@ -98,7 +98,8 @@ export default {
         content: '';
         position: absolute;
         top: -5px;
-        right: 15px;
+        left: 50%;
+        margin-left: -2px;
     }
 
     .edit-btn {

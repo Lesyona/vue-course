@@ -3,9 +3,19 @@
         <AddPayment @addNewPayment="addPaymentItem" />
 
         <v-row>
-            <PaymentsDisplay :list="currentElements"/>
+            <v-col
+                cols="12"
+                md="6"
+            >
+                <PaymentsDisplay :list="currentElements"/>
+            </v-col>
 
-            <Diagram />
+            <v-col
+                cols="12"
+                md="6"
+            >
+                <Diagram />
+            </v-col>
         </v-row>
 
         <Pagination />
